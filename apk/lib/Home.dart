@@ -58,7 +58,7 @@ class _HomeState extends State<Home> {
 
     try {
       final response = await http.post(
-        Uri.parse('http://16.171.113.165/api/predict'),
+        Uri.parse('http://51.21.1.204/api/predict'),
         headers: {
           "Content-Type": "application/json",
           "Authorization": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiY2RiIn0.ohLUJ7PZpd7uYR9qqolf1MDXmwt5IYUI5cOKkuTySdw"
@@ -99,16 +99,23 @@ class _HomeState extends State<Home> {
     }
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Vehicle Form'),
+@override
+Widget build(BuildContext context) {
+  return Scaffold(
+    appBar: AppBar(
+      title: const Center(
+        child: Text(
+          'Vehicle Form',
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
       ),
-      body: Padding(
+    ),
+    body: Center(
+      child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text('Select Manufacture', style: TextStyle(fontSize: 16)),
             DropdownButton<String>(
@@ -193,13 +200,21 @@ class _HomeState extends State<Home> {
                 });
               },
             ),
-            ElevatedButton(
-              onPressed: handleSubmit,
-              child: Text('Submit'),
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: handleSubmit,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blue, // Change this to your desired color
+                ),
+                child: Text('Submit'),
+              ),
             ),
           ],
         ),
       ),
-    );
-  }
+    ),
+  );
+}
+
 }
